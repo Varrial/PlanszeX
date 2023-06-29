@@ -1,0 +1,66 @@
+﻿<div class="navbar navbar-default navbar-fixed-top komp-navbar">
+    <div>@Html.ActionLink("PlanszeX", "Index", "Home", new { area = "" }, new { @class = "navbar-logo" })</div>
+    <ul class="nav-wrapper float-left">
+        <li>
+            @Html.ActionLink("Planszowe", "Index", "Categories", new { id = 4 })
+        </li>
+        <li>
+            @Html.ActionLink("Dodatki do planszówek", "Index", "Categories", new { id = 5 })
+        </li>
+        <li>
+            @Html.ActionLink("Klasyczne", "Index", "Categories", new { id = 6 })
+        </li>
+    </ul>
+    <ul class="nav-wrapper float-right">
+        @if (User.Identity.IsAuthenticated)
+        {
+            <li>
+                @Html.ActionLink("Witaj "+@Html.Raw(User.Identity.Name), "Details", "User")
+            </li>
+            @if (User.Identity.Name.Equals("Admin"))
+            {
+                <li>
+                    @Html.ActionLink("Panel Administratora", "Index", "AdminPanel")
+                </li>
+            }
+            @if (User.Identity.Name.Equals("Pracownik"))
+            {
+                <li>
+                    @Html.ActionLink("Panel Pracownika", "Index", "AdminPanel")
+                </li>
+            }
+            <li>
+                @Html.ActionLink("Wyloguj", "SignOut", "User")
+            </li>
+        }
+        else
+        {
+            <li>
+                @Html.ActionLink("Zaloguj się", "SignIn", "User")
+            </li>
+            <li>
+                @Html.ActionLink("Zarejestruj się", "SignUp", "User")
+            </li>
+        }
+        @if(ViewData["Language"] != null)
+        {
+            <li>
+                @Html.ActionLink(ViewData["Language"].ToString(), "ChangeLanguage", "Home")
+            </li>
+        }
+        else
+        {
+            <li>
+                @Html.ActionLink("PLN", "ChangeLanguage", "Home")
+            </li>
+        }
+        <li>
+            <a href="@Url.Action("Index", "Cart")">
+                <i class="fas fa-shopping-cart"></i>&nbsp;
+            </a>
+        </li>
+            
+        
+    </ul>
+    <div class="clear"></div>
+</div>

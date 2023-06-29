@@ -1,0 +1,33 @@
+﻿@model Planszex.Controllers.ProductsController.DetailsViewModel
+
+@{
+    ViewData["Title"] = Model.product.Name;
+}
+@using (Html.BeginForm("Details", "Products", FormMethod.Post))
+{
+<div class="product-details-wrapper">
+    @Html.HiddenFor(model => model.product.ProductId)
+    <div class="product-image-details"><img src="@Html.Raw(Model.productLink)" alt="Zdjęcie" class="product-image-full" /></div>
+    <div class="product-desc">
+        <p>Nazwa produktu: @Html.DisplayFor(model => model.product.Name)</p>
+        <p class="SKU">SKU: @Html.DisplayFor(model => model.product.Sku)</p>
+        <p>Data wydania: @Html.DisplayFor(model => model.dateOfAdding)</p>
+        <p>Cena: @Html.DisplayFor(model => model.price.Price)&nbsp;@Html.DisplayFor(model => model.price.Description)</p>
+        @if(Model.product.HavePromoPrice == true)
+        {
+                @Html.Raw("<p style=\"font-size:30px; padding:0;\" class=\"product-special-price\">Cena promocyjna: 99,99&nbsp;")
+                @Html.DisplayFor(model => model.price.Description) 
+                @Html.Raw("</p>")
+        }
+
+        <p>Ilość <input asp-for="qty" type="number" step="1" min="1" value="1"/></p>
+        <button class="btn add-to-cart-btn effect01">Dodaj do koszyka</button>
+    </div>
+    <div style="clear:both;"></div>
+</div>
+}
+<div>
+    <div style="padding-left:20px;padding-right:20px;" class="float-left">@Html.ActionLink("Wróć do kategorii", "Index", "Categories", new { id = Model.product.CategoryId }, new { @class = "btn add-to-cart-btn effect01" })</div>
+    <div class="float-left">@Html.ActionLink("Wróć do strony głównej", "Index", "Home", new { } ,new { @class = "btn add-to-cart-btn effect01" , @style = "max-width:300px;"})</div>
+    <div style="clear:both;"></div>
+</div>

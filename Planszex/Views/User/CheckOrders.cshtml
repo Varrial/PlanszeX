@@ -1,0 +1,14 @@
+﻿@model Planszex.Controllers.UserController.CheckOrdersViewModel
+
+@{
+    ViewData["Title"] = "Twoje zamówienia";
+}
+
+<div class="row">
+    @foreach(var item in Model.orders)
+    {
+        <div class="col-md-12">
+            @Html.Raw($"{item.OrderId} {item.OrderDate}")
+        </div>
+    }
+</div>

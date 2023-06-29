@@ -1,0 +1,120 @@
+﻿@model Planszex.Controllers.UserController.SignInViewModel
+
+@{
+    ViewData["Title"] = "SignUp";
+}
+<link rel="stylesheet" href="~/css/Form.css" />
+<div class="containter-custom">
+
+    <h1 class="header">Zarejestruj się</h1>
+
+
+    <form asp-action="SignUp" method="post">
+        <div class="container">
+            <!--div asp-validation-summary="ModelOnly" class="text-danger col-12"></!--div>-->
+            <div class="row form-group ">
+                <div class="col-sm-12">
+                    <label asp-for="user.Login" class="control-label label-custom col-12"></label>
+                </div>
+                <div class="col-sm-4">
+                    <input asp-for="user.Login" class="form-control form-input-text-custome" />
+                </div>
+                <div class="col-sm-8">
+                    <span asp-validation-for="user.Login" class="text-danger"></span>
+                </div>
+
+            </div>
+
+
+            <div class="row form-group  ">
+                <div class="col-sm-12">
+                    <label asp-for="PasswordVM" class="control-label label-custom col-12"></label>
+                </div>
+                <div class="col-sm-4">
+                    <input type="password" asp-for="PasswordVM" class="form-control form-input-text-custome" />
+                </div>
+                <div class="col-sm-8">
+                    <span asp-validation-for="PasswordVM" class="text-danger "></span>
+                </div>
+
+            </div>
+
+
+
+            <div class=" row form-group  ">
+                <div class="col-sm-12">
+                    <label asp-for="user.Email" class="control-label label-custom col-12"></label>
+                </div>
+                <div class="col-sm-4">
+                    <input asp-for="user.Email" class="form-control form-input-text-custome" />
+                </div>
+                <div class="col-sm-8">
+                    <span asp-validation-for="user.Email" class="text-danger "></span>
+                </div>
+
+            </div>
+
+
+            <div class=" row form-group  ">
+                <div class="col-sm-12">
+                    <label asp-for="user.Name" class="control-label label-custom col-12"></label>
+                </div>
+                <div class="col-sm-4">
+                    <input asp-for="user.Name" class="form-control form-input-text-custome" />
+                </div>
+                <div class="col-sm-8">
+                    <span asp-validation-for="user.Name" class="text-danger "></span>
+                </div>
+
+            </div>
+
+
+            <div class=" row form-group  ">
+                <div class="col-sm-12">
+                    <label asp-for="user.Surname" class="control-label label-custom col-12"></label>
+                </div>
+                <div class="col-sm-4">
+                    <input asp-for="user.Surname" class="form-control form-input-text-custome" />
+                </div>
+                <div class="col-sm-8">
+                    <span asp-validation-for="user.Surname" class="text-danger "></span>
+                </div>
+
+            </div>
+
+
+            <div class=" row form-group  ">
+                <div class="col-sm-12">
+                    <label asp-for="user.Phone" class="control-label label-custom col-12"></label>
+                </div>
+                <div class="col-sm-4">
+                    <input asp-for="user.Phone" class="form-control form-input-text-custome" />
+                </div>
+                <div class="col-sm-8">
+                    <span asp-validation-for="user.Phone" class="text-danger "></span>
+                </div>
+
+            </div>
+
+
+            <div class=" row form-group  ">
+                <div class="col-sm-12">
+                    <label asp-for="user.Address" class="control-label label-custom col-12"></label>
+                </div>
+                <div class="col-sm-4">
+                    <input asp-for="user.Address" class="form-control form-input-text-custome" />
+                </div>
+                <div class="col-sm-8">
+                    <span asp-validation-for="user.Address" class="text-danger "></span>
+                </div>
+
+            </div>
+            
+            <div class="form-group form-submit-button-custom row">
+                <button type="submit" class="btn shop-btn effect01">Stwórz  </button>
+            </div>
+        </div>
+    </form>
+
+
+</div>

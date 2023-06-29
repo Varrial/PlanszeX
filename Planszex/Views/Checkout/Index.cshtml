@@ -1,0 +1,67 @@
+﻿@model Planszex.Controllers.CheckoutController.CheckoutViewModel
+@{
+    ViewBag.Title = "Realizacja zamówienia";
+}
+@using(Html.BeginForm("HandleTransaction","Checkout",FormMethod.Post))
+{
+<div class="row checkout-container">
+    <div class="col-md-6 checkout-container-left">
+        <h2>Dostawa i płatność</h2>
+        <div class="col-md-12 checkout-user-data">
+            <h3>Dane odbiorcy</h3>
+            <div>
+                <input class="checkout-user-data-row" asp-for="name" type="text" placeholder="Imię" />
+            </div>
+            <div>
+                <input class="checkout-user-data-row" asp-for="surname" type="text" placeholder="Nazwisko" />
+            </div>
+            <div>
+                <input class="checkout-user-data-row" asp-for="address" type="text" placeholder="Adres dostawy" />
+            </div>
+        </div>
+
+        <div class="col-md-12 checkout-shipping">
+            <h3>Sposoby dostawy</h3>
+            <table>
+                <tr>
+                    <td><label>@Html.RadioButtonFor(m => m.order.Shipping ,"Osobisty", new { @checked = "checked" }) <img width="64px" height="64px" src="~/img/Shipping/u_nas.png" /></label></td>
+                    <td><label>@Html.RadioButtonFor(m => m.order.Shipping ,"Kurier") <img width="64px" height="64px" src="~/img/Shipping/kurier.png" /></label></td>
+                    <td><label>@Html.RadioButtonFor(m => m.order.Shipping ,"Inpost") <img width="96px" height="64px" src="~/img/Shipping/inpost.png" /></label></td>
+                    <td><label>@Html.RadioButtonFor(m => m.order.Shipping ,"Punkt odbioru") <img width="64px" height="64px" src="~/img/Shipping/oddziały.svg" /></label></td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="col-md-12 checkout-payment">
+            <h3>Metody płatności</h3>
+            <table>
+                <tr>
+                    <td><label>@Html.RadioButtonFor(m => m.order.PaymentMethod ,"BLIK") Płatność BLIK <img width="64px" height="64px" src="~/img/Payment/blik.png" /></label></td>
+                </tr>
+                <tr>
+                    <td><label>@Html.RadioButtonFor(m => m.order.PaymentMethod ,"Karta") Karta płatnicza online<img width="64px" height="64px" src="~/img/Payment/karta.png" /></label></td>
+                </tr>
+                <tr>
+                    <td><label>@Html.RadioButtonFor(m => m.order.PaymentMethod ,"Online") Płatność przez internet - online <img width="64px" height="64px" src="~/img/Payment/online.png" /></label></td>
+                </tr>
+                <tr>
+                    <td><label>@Html.RadioButtonFor(m => m.order.PaymentMethod ,"Odbior") Płatność przy odbiorze <img width="64px" height="64px" src="~/img/Payment/odbior.png" /></label></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-6 checkout-container-right">
+        <h2>Lista produktów</h2>
+            @foreach (var item in Model.checkoutProducts)
+            {
+            <div class="cart-product">
+                <div class="col-md-3"><img class="cart-img" src="@Html.Raw(item.productLink)" alt="Zdjęcie" /></div>
+                <div class="col-md-7">@item.product.Name</div>
+                <div class="col-md-1">@item.product.Qty</div>
+                <div class="col-md-1">@item.product.Price</div>
+            </div>
+            }
+        <button style="padding-top:20px;" class="btn add-to-cart-btn effect01">Zapłać</button>
+    </div>
+</div>
+}

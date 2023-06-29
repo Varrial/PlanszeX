@@ -1,0 +1,51 @@
+﻿@{
+    ViewBag.Title = "Nie jesteś zalogowany";
+}
+<div class="row">
+    <div class="col-md-6 describe-buyer-left">
+        <h2>Nie jesteś zalogowany.</h2>
+        <p>Jeżeli chciałbyś wygodniej przeprowadzać transakcje zaloguj się, bądź zarejestruj. Pomoże Ci to również w śledzeniu swoich przyszłych zamówień, jak i pozwoli
+            na skorzystanie z niesamowitych promocji!
+        </p>
+        <a href="@Url.Action("Index", "Checkout")">
+            <div class="btn without-login-btn effect01">Kontynuuj bez logowania</div>
+        </a>
+    </div>
+    <div class="col-md-6 describe-buyer-right">
+        <h2>Jeśli masz konto możesz się zalogować</h2>
+
+        @using (Html.BeginForm("SignInToCheckout", "User", FormMethod.Post))
+        {
+        <div class="container">
+            <form class="form-horizontal" method="post">
+                <div class="form-group">
+                    <div class="label-custom col-sm-12">
+                        @ViewBag.SignIn
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label-custom col-sm-12">
+                            <label class="control-label col-sm2">Login</label>
+                    </div>
+                    <div class="col-sm-3">
+                        <input name="Login" id="Login" class="form-control form-input-text-custome">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="label-custom col-sm-12"><label class="control-label col-sm2">Password</label></div>
+                    <div class="col-sm-3">
+                        <input name="Password" id="Password" type="password" class="form-control form-input-text-custome">
+                    </div>
+                </div>
+                <div class="form-group col-sm-12 form-submit-button-custom">
+                    <div class=" col-sm-7">
+                        <button class="btn shop-btn effect01">Zatwierdź</button>
+                    </div>
+                    <div class=" col-sm-5"></div>
+                </div>
+            </form>
+        </div>
+        }
+    </div>
+    <div class="clear"></div>
+</div>

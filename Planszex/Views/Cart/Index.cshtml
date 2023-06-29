@@ -1,0 +1,73 @@
+﻿@model Planszex.Controllers.CartController.CartViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+
+
+
+<div class="cart-container">
+    <h1>Koszyk</h1>
+    <div class="cart-header row">
+        <div class="col-md-1 col-xs-1"></div>
+        <div class="col-md-4 col-xs-4">Tytuł</div>
+        <div class="col-md-2 col-xs-2">Cena</div>
+        <div class="col-md-2 col-xs-2">Cena promocyjna</div>
+        <div class="col-md-2 col-xs-2">Ilość</div>
+        <div class="col-md-1 col-xs-1">Usuń</div>
+    </div>
+    @foreach (var item in Model.cartModels)
+    {
+    <div class="cart-product row">
+        <div class="col-md-1 col-xs-1"><img class="cart-img" src="@Html.Raw(item.productLink)" alt="Zdjęcie" /></div>
+        <div class="col-md-4 col-xs-4 cart-product-center">@item.product.Name</div>
+        <div class="col-md-2 col-xs-2 cart-product-center">@item.product.Price</div>
+        <div class="col-md-2 col-xs-2 cart-product-center">@item.product.PromoPrice</div>
+        <div class="col-md-2 col-xs-2 cart-product-center">@item.product.Qty</div>
+        <div class="col-md-1 col-xs-1 cart-product-center"><a class="cart-product-anchor" asp-action="Delete" asp-route-id="@item.product.Id"><i class="fas fa-trash-alt"></i></a></div>
+    </div>
+    }
+    <a class="cart-checkout-btn" href="@Url.Action("DescribeBuyer", "Checkout")">
+        <div class="btn add-to-cart-btn effect01">Złóż zamówienie</div>
+    </a>
+    <div class="clear"></div>
+    <div class="cart-promo-code-wrapper">
+    @using (Html.BeginForm("ApplyPromo","Cart",FormMethod.Get))
+    {
+        <h3>Wprowadź kod promocyjny</h3>
+        <div><input type="text" placeholder="Kod promocyjny" /></div>
+        <button style="margin-top:10px;" class="btn add-to-cart-btn effect01">Zatwierdź</button>
+    }
+    </div>
+    <div class="promo-list">
+    <div class="promo-list-title">Popularne produkty</div>
+    <div class="promo-list-wrapper">
+        <div class="row">
+            @foreach (var promoProduct in Model.popularProducts)
+            {
+                <div class="col-xs-12 col-md-3 col-lg-3">
+                    <div class="product">
+                        <div class="product-img">
+                            <a href="@Url.Action("Details","Products")/@Html.Raw(promoProduct.product.ProductId)"><img src="@Html.Raw(promoProduct.productLink)" alt="Zdjęcie" /></a>
+                        </div>
+                        <div class="product-title">
+                            @Html.Raw(promoProduct.product.Name)
+                        </div>
+                        <div class="product-price">
+                            @Html.Raw($"{promoProduct.price.Price.ToString()}&nbsp;{promoProduct.price.Description}")
+                        </div>
+                        <div class="product-special-price">
+                            @if (promoProduct.product.HavePromoPrice == true)
+                            {
+                                @Html.Raw($"99,99&nbsp;{promoProduct.price.Description}")
+                            }
+                            else @Html.Raw("&nbsp;")
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+﻿@model Planszex.Controllers.UserController.DetailsViewModel
+
+@{
+    ViewData["Title"] = "Dane użytkownika";
+}
+
+@using(Html.BeginForm("ChangeItemsOnPage","User",FormMethod.Post))
+{
+<div>
+    <h1>Dane użytkownika</h1>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.user.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.user.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.user.Surname)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.user.Surname)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.user.Login)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.user.Login)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.user.Address)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.user.Address)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.user.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.user.Email)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.user.Phone)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.user.Phone)
+        </dd>
+    </dl>
+    <div>
+        <div>Liczba produktów na stronie</div>
+        <div><input name="itemsOnPage" id="itemsOnPage" type="number" min="0" value="@Model.itemsOnPage" /></div>
+        <button class="btn add-to-cart-btn effect01">Zmień</button>
+    </div>
+    <div>@Html.ActionLink("Sprawdź swoje zamówienia", "CheckOrders", "User")</div>
+</div>
+
+}
+

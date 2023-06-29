@@ -1,0 +1,40 @@
+﻿@model Planszex.Controllers.Admin.AdminPanelController.IndexViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+@{
+    try
+    {
+        if (User.Identity.Name.Equals("Pracownik") || User.Identity.Name.Equals("Admin"))
+        {
+
+        }
+    }
+    catch (Exception ex)
+    {
+        <script>
+            window.location.href = '@Url.Action("Index", "Home")'; // Przekierowanie na akcję "Index" kontrolera "Home"
+        </script>
+    }
+}
+
+
+<div style="padding-left:20px;">
+    <h1>Panel Administracyjny</h1>
+
+    Liczba odwiedzin: @Html.Raw(Model.counter)
+    
+    <br /> <br />
+    
+    @Html.ActionLink("Zarządzaj produktami", "Index", "ProductsAdmin", new { } ,new { @class = "btn add-to-cart-btn effect01" , @style = "max-width:300px;"})
+    
+    <br /> <br />
+
+    @Html.ActionLink("Zarządzaj zamówieniami", "Index", "OrdersAdmin", new { } ,new { @class = "btn add-to-cart-btn effect01" , @style = "max-width:300px;"})
+    
+    <br /> <br />
+
+    @Html.ActionLink("Zarządzaj użytkownikami", "Index", "UsersAdmin", new { } ,new { @class = "btn add-to-cart-btn effect01" , @style = "max-width:300px;"})
+
+</div>

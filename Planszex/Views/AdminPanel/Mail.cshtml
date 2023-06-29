@@ -1,0 +1,14 @@
+﻿@model Planszex.Controllers.Admin.AdminPanelController.MailViewModel
+@{
+    ViewBag.Title = "Tworzenie maila";
+}
+
+<h1>Tworzenie maila</h1>
+
+@using(Html.BeginForm("Mail","AdminPanel",FormMethod.Post))
+{
+    <h3>Wprowadź ciało html</h3>
+    <textarea asp-for="html"></textarea>
+    <br />
+    <button class="btn shop-btn effect01">Zatwierdź</button>
+}

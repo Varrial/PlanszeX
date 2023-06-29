@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Planszex.Controllers.CategoriesController.IndexViewModel>
+
+@{
+    ViewData["Title"] = ViewData["CategoryName"];
+}
+
+<h1 class="category-name">@ViewData["CategoryName"]</h1>
+
+<div class="promo-list">
+    <div class="promo-list-title">Polecamy</div>
+    <div class="promo-list-wrapper">
+        <div class="row">
+            @foreach (var promoProduct in Model)
+            {
+                <div class="col-xs-12 col-md-3 col-lg-3">
+                    <div class="product">
+                        <div class="product-img">
+                            <a href="@Url.Action("Details","Products")/@Html.Raw(promoProduct.product.ProductId)"><img src="@Html.Raw(promoProduct.productLink)" alt="Zdjęcie" /></a>
+                        </div>
+                        <div class="product-title">
+                            @Html.Raw(promoProduct.product.Name)
+                        </div>
+                        <div class="product-price @{ if (promoProduct.product.HavePromoPrice == true) { <text>product-price-old</text> } }">
+                            @Html.Raw($"{promoProduct.price.Price.ToString()}&nbsp;{promoProduct.price.Description}")
+                        </div>
+                        <div class="product-special-price">
+                            @if (promoProduct.product.HavePromoPrice == true)
+                            {
+                                @Html.Raw($"99,99&nbsp;{promoProduct.price.Description}")
+                            }
+                            else @Html.Raw("&nbsp;")
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Planszex.Models.User>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@if (User.Identity.Name.Equals("Pracownik") || User.Identity.Name.Equals("Admin"))
+{
+
+    <h1>Index</h1>
+
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Login)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.PasswordHash)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Permission)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Email)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+    @foreach (var item in Model) {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Login)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PasswordHash)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Permission)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+                    @if (User.Identity.Name.Equals("Admin"))
+                    {
+                         <a asp-action="Edit" asp-route-id="@item.UserId">Edit</a> <a>| </a>
+                    }
+                    <a asp-action="Details" asp-route-id="@item.UserId">Details</a>
+                    @if (User.Identity.Name.Equals("Admin"))
+                    {
+                       <a>| </a> <a asp-action="Delete" asp-route-id="@item.UserId">Delete</a>
+                    }
+                
+                </td>
+            </tr>
+    }
+        </tbody>
+    </table>
+
+}
